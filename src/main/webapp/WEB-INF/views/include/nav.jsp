@@ -12,7 +12,7 @@
       <a class="nav-link" href="${ctp}/member/memberLogin">Login</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="${ctp}/reivew/reivewList">Reivew</a>
+      <a class="nav-link" href="${ctp}/review/reviewList">Review</a>
     </li>
     <li class="nav-item">
       <a class="nav-link disabled" href="#">Disabled</a>

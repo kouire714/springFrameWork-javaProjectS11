@@ -9,5 +9,8 @@ create table review (
 )
 
 insert into review values (default, '승수', 'kourie2@gmail.com', '게시판글', '게시판글작동되나용?');
+insert into review values (default, '승수', 'kourie2@gmail.com', '게시판글2', '게시판글작동되나용?2');
+
+select * from review
 
 drop table review

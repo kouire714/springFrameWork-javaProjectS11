@@ -22,7 +22,7 @@ public class MessageController {
 		}
 		else if(msgFlag.equals("memberJoinOk")) {
 			model.addAttribute("msg", "회원가입 되었습니다.");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", "");
 		}
 		else if(msgFlag.equals("memberJoinNo")) {
 			model.addAttribute("msg", "회원가입에 실패했습니다");
