@@ -23,7 +23,7 @@ public class ReviewController {
 	ReviewService reviewService;
 	
 	@RequestMapping(value = "/reviewList", method = RequestMethod.GET)
-	public String reviewListget(Model model) {
+	public String reviewListGet(Model model) {
 		
 		List<ReviewVO> vos = reviewService.getReviewList();
 		
@@ -33,12 +33,13 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="/reviewContent", method = RequestMethod.GET)
-	public String reviewContentget(HttpServletRequest request) {
+	public String reviewContentGet(HttpServletRequest request) {
 		
 		String idx = request.getParameter("idx");
 		ReviewVO vo = reviewService.getReviewContent(idx);
 		
 		request.setAttribute("vo", vo);
+//		request.getAttribute("vo");
 //		model.addAttribute("vo", vo);
 		
 		return "review/reviewContent";
@@ -51,9 +52,17 @@ public class ReviewController {
 	
 	@RequestMapping(value = "reviewInput", method = RequestMethod.POST)
 	public String reviewInputPost(
-//			@RequestParam
+			@RequestParam("nickName") String nickName,
+			@RequestParam String email,
+			String title,
+			@RequestParam(name="content", defaultValue="", required=false) String content
 			) {
-		return "redirect:review/reviewList";
+		int res = reviewService.setReviewInput(nickName, email, title, content);
+		if(res != 1) {
+			return "redirect:/message/reviewInputNo";
+		}
+		
+		return "redirect:/message/reviewInputOk";
 	}
 	
 }

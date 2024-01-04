@@ -9,4 +9,6 @@ public interface ReviewService {
 	List<ReviewVO> getReviewList();
 
 	ReviewVO getReviewContent(String idx);
+
+	int setReviewInput(String nickName, String email, String title, String content);
 }

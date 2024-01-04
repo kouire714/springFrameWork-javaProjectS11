@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaProjectS11.dao.NoticeDAO">
+
+<select id="getNoticeList" resultType="com.spring.javaProjectS11.vo.NoticeVO">
+	select * from notice;
+</select>
+
+<select id="getNoticeContent" resultType="com.spring.javaProjectS11.vo.NoticeVO">
+	select * from notice where idx = #{idx};
+</select>
+
+<insert id="setNoticeInput">
+	insert into notice value (default, #{nickName}, #{email}, #{title}, #{content});
+</insert>
+
+</mapper>

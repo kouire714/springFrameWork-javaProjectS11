@@ -12,4 +12,6 @@ public interface ReviewDAO {
 
 	ReviewVO getReviewContent(@Param("idx")String idx);
 
+	int setReviewInput(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content);
+
 }

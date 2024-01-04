@@ -1,9 +1,11 @@
 package com.spring.javaProjectS11.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +27,8 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/memberLogin", method = RequestMethod.POST)
-	public String memberLoginPost(
+	public String memberLoginPost(Model model,
+			HttpSession session,
 			@RequestParam(name="mid", defaultValue="", required=false) String mid,
 			@RequestParam(name="pwd", defaultValue="", required=false) String pwd
 			) {
@@ -34,7 +37,25 @@ public class MemberController {
 		
 		if(vo != null) {
 			if(vo.getPwd().equals(pwd)) {
-				return "redirect:/message/memberLoginOk?mid="+ mid;
+				String strLevel = "";
+				if(vo.getLevel() == 1) {
+					strLevel = "일반회원";
+				}
+				else if(vo.getLevel() == 2) {
+					strLevel = "우수회원";
+				}
+				else if(vo.getLevel() == 0) {
+					strLevel = "관리자";
+				}
+//				HttpSession session = request.getSession();
+				session.setAttribute("sNickName", vo.getNickName());
+				session.setAttribute("sLevel", strLevel);
+				
+				String nickName = vo.getNickName();
+				System.out.println("nickName : " + nickName);
+				
+				model.addAttribute("nickName", nickName);
+				return "redirect:/message/memberLoginOk";
 			}
 		}
 		return "redirect:/message/memberLoginNo";

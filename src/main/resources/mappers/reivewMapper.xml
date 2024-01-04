@@ -10,4 +10,8 @@
 	select * from review where idx = #{idx};
 </select>
 
+<insert id="setReviewInput">
+	insert into review values (default, #{nickName}, #{email}, #{title}, #{content});
+</insert>
+
 </mapper>

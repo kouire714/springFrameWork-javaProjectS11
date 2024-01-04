@@ -5,27 +5,18 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>reivewList.jsp</title>
+	<title>noticeContent.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
-	<style>
-		button, a {
-			display: block;
-		}
-	</style>
-	<script>
-		'use strict'
-		
-	</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-<h2>리뷰 게시판 목록</h2>
-<button onclick="location.href='reviewInput'">글쓰기</button>
-<c:forEach var="vo" items="${vos}">
-	<a href="reviewContent?idx=${vo.idx}">${vo.title}</a>
-</c:forEach> 
+<h2>공지 게시판</h2>
+<p>작성자 : ${vo.nickName}</p>
+<p>이메일 : ${vo.email}</p>
+<p>제목 : ${vo.title}</p>
+<p>공지내용 : ${vo.content}</p>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

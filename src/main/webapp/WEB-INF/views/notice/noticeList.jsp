@@ -5,27 +5,23 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>reivewList.jsp</title>
+	<title>noticeList.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
 	<style>
 		button, a {
-			display: block;
+			display : block;
 		}
 	</style>
-	<script>
-		'use strict'
-		
-	</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-<h2>리뷰 게시판 목록</h2>
-<button onclick="location.href='reviewInput'">글쓰기</button>
+<h2>공지 게시판 목록</h2>
+<button onclick="location.href='${ctp}/notice/noticeInput'">글쓰기</button>
 <c:forEach var="vo" items="${vos}">
-	<a href="reviewContent?idx=${vo.idx}">${vo.title}</a>
-</c:forEach> 
+	<a href="${ctp}/notice/noticeContent?idx=${vo.idx}">${vo.title}</a>
+</c:forEach>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

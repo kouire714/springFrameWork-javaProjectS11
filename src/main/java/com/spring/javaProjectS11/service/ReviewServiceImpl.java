@@ -23,4 +23,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO getReviewContent(String idx) {
 		return reviewDAO.getReviewContent(idx);
 	}
+
+	@Override
+	public int setReviewInput(String nickName, String email, String title, String content) {
+		return reviewDAO.setReviewInput(nickName, email, title, content);
+	}
 }

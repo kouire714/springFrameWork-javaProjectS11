@@ -9,13 +9,14 @@
       <a class="nav-link" href="${ctp}/">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="${ctp}/member/memberLogin">Login</a>
+      <c:if test="${sLevel == null}"><a class="nav-link" href="${ctp}/member/memberLogin">Login</a></c:if>
+      <c:if test="${sLevel != null}"><a class="nav-link" href="${ctp}/member/memberLogout">Logout</a></c:if>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="${ctp}/notice/noticeList">Notice</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="${ctp}/review/reviewList">Review</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
     </li>
   </ul>
 </div>

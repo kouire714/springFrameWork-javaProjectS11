@@ -14,10 +14,10 @@
 <div class="container">
 <h2>리뷰 작성 페이지</h2>
 <form method="post">
-	<p>작성자<input type="text" id="nickName" name="nickName" value="${nickName}" required/></p>
-	<p>이메일<input type="text" id="email" name="email" value="${email}" /></p>
-	<p>제목<input type="text" id="title" name="title" /></p>
-	<p>작성내용<input type="text" id="content" name="content" /></p>
+	<p>작성자 : <input type="text" id="nickName" name="nickName" value="${nickName}" required/></p>
+	<p>이메일 : <input type="text" id="email" name="email" value="${email}" /></p>
+	<p>제목 : <input type="text" id="title" name="title" /></p>
+	<p>작성내용 : <input type="text" id="content" name="content" /></p>
 	<input type="submit" value="글올리기" />
 </form>
 </div>
