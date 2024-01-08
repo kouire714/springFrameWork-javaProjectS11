@@ -21,11 +21,15 @@ public class MessageController {
 		
 		if(msgFlag.equals("memberLoginOk")) {
 			model.addAttribute("msg", nickName + "님 로그인 되었습니다.");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", "");
 		}
 		else if(msgFlag.equals("memberLoginNo")) {
 			model.addAttribute("msg", "존재하지 않는 회원이거나 비밀번호 오류입니다.");
 			model.addAttribute("url", "member/memberLogin");
+		}
+		else if(msgFlag.equals("memberLogout")) {
+			model.addAttribute("msg", nickName + "님 로그아웃 되었습니다.");
+			model.addAttribute("url", "");
 		}
 		else if(msgFlag.equals("memberJoinOk")) {
 			model.addAttribute("msg", "회원가입 되었습니다.");

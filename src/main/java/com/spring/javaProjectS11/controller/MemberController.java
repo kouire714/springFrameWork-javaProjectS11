@@ -52,13 +52,20 @@ public class MemberController {
 				session.setAttribute("sLevel", strLevel);
 				
 				String nickName = vo.getNickName();
-				System.out.println("nickName : " + nickName);
 				
 				model.addAttribute("nickName", nickName);
 				return "redirect:/message/memberLoginOk";
 			}
 		}
 		return "redirect:/message/memberLoginNo";
+	}
+	
+	@RequestMapping(value = "/memberLogout", method = RequestMethod.GET)
+	public String memberLogoutGet(HttpSession session, Model model) {
+		String nickName = (String) session.getAttribute("sNickName");
+		session.invalidate();
+		model.addAttribute("nickName", nickName);
+		return "redirect:/message/memberLogout";
 	}
 	
 	@RequestMapping(value = "/memberJoin", method = RequestMethod.GET)
