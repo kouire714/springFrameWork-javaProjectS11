@@ -20,8 +20,8 @@ public class RoomController {
 	RoomService roomService;
 	
 	@RequestMapping(value = "/roomMain", method = RequestMethod.GET)
-	public String roomMain(HttpServletRequest request, Model model) {
-		
+	public String roomMainGet(HttpServletRequest request, Model model) {
+
 		Calendar cal = Calendar.getInstance();
 		int curYear = cal.get(Calendar.YEAR);
 		int curMonth = cal.get(Calendar.MONTH);
@@ -44,8 +44,7 @@ public class RoomController {
 		int startWeek = cal.get(Calendar.DAY_OF_WEEK);
 		
 		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		System.out.println("LastDay : " + lastDay);
-		
+
 		int prevYear = yy;
 		int prevMonth = mm - 1;
 		int nextYear = yy;
@@ -55,17 +54,34 @@ public class RoomController {
 			prevMonth = 11;
 			prevYear--;
 		}
-		else if(prevMonth > 11) {
-			prevMonth = 0;
-			prevYear++;
+		else if(nextMonth > 11) {
+			nextMonth = 0;
+			nextYear++;
 		}
 		
 		cal.set(prevYear, prevMonth, 1);
-		
 		int prevLastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		System.out.println("prevLastDay : " + prevLastDay);
+		
+		cal.set(nextYear, nextMonth, 1);
+		int nextStartWeek = cal.get(Calendar.DAY_OF_WEEK);
+		
+		model.addAttribute("curYear", curYear);
+		model.addAttribute("curMonth", curMonth);
+		model.addAttribute("curDate", curDate);
+
+		model.addAttribute("yy", yy);
+		model.addAttribute("mm", mm);
+		model.addAttribute("startWeek", startWeek);
+		model.addAttribute("lastDay", lastDay);
+		
+		model.addAttribute("prevYear", prevYear);
+		model.addAttribute("prevMonth", prevMonth);
+		model.addAttribute("prevLastDay", prevLastDay);
+
+		model.addAttribute("nextYear", nextYear);
+		model.addAttribute("nextMonth", nextMonth);
+		model.addAttribute("nextStartWeek", nextStartWeek);		
 		
 		return "room/roomMain";
 	}
-	
 }
