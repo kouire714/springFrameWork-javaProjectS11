@@ -10,4 +10,9 @@ public class RoomServiceImpl implements RoomService {
 
 	@Autowired
 	RoomDAO serviceDAO;
+
+	@Override
+	public int setRoomReservation() {
+		return serviceDAO.setRoomReservation();
+	}
 }

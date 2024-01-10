@@ -25,8 +25,8 @@
 		color : #fff;
 	}
 	
-	.resDate {
-		background-color : yellowgreen;
+	.ymd {
+		margin : 15px;
 	}
 	
 	</style>
@@ -39,28 +39,42 @@
 		let date = today.getDate();
 		let cnt = 0;
 		
+		let cellText1 = 0;
+		let cellText2 = 0
+		
+		/* 
 		function resSelection() {
-			if(arr.length == 0) {
-				arr.push('startResDate');
-				if(this.className += 'resDate')) {
-					
-				}
-			}
-			else if(arr.length == 1) {
-				arr.push('endResDate');
-				if(this.classList.contains('resDate')) {
-					
-				}
-			}
-			else {
-				alert("이미 일정이 설정되었습니다.")
-			}
-			
-			let res = "완료";
-			
-			document.getElementById("result").value = res;
+		let dateTag = document.getElementById("td${cell}");
+			console.log(dateTag);
+			dateTag.classList.add("resDate");
+			alert("시작날짜선택완료");
+		};
+		  */
+		
+		/* 
+		date = document.getElementById("td${cell}");
+		console.log("date : ", date);
+		if(date != null) {
+			date.addEventListener('click', function() {
+				this.classList.add("resDate");
+				alert("시작날짜선택완료");
+			})	
 		}
-	
+		 */
+		
+		/* 
+		const resDate = document.querySelectorAll(".dateTag");
+		console.log(resDate);
+		
+		resDate.forEach((resDate)=>{
+			console.log(resDate);
+			resDate.addEventListener('click', ()=>{
+				alert("시작날짜선택완료");
+				resDate.classList.add('active');
+			})
+		})
+		*/
+		
 	</script>
 </head>
 <body>
@@ -87,7 +101,7 @@
 				<c:set var="cell" value="${startWeek}" />
 				<c:forEach begin="1" end="${lastDay}" varStatus="status">
 					<c:set var="todaySw" value="${curYear==yy && curMonth==mm && curDate==status.count? 1 : 0}" />
-					<td id="td${cell}" ${todaySw==1 ? 'class=today' : ''} class="text-left"><p onclick="resSelection()">${status.count}</p></td>
+					<td id="td${cell}" ${todaySw==1 ? 'class=today' : ''} class="text-left"><p>${status.count}</p></td>
 					<c:if test="${cell % 7 == 0}"><tr></tr></c:if>
 					<c:set var="cell" value="${cell + 1}" />
 				</c:forEach>
@@ -96,8 +110,57 @@
 				</c:forEach>
 			</tr>
 		</table>
-		<input type="text" name="" id="result"/>
 	</div>
+	<form style="display:flex; justify-content:space-around" method="post">
+		<div style="text-align:center">
+			<p>체크인 날짜</p>
+			<div style="display:flex; justify-content:space-around">
+				<p class="ymd">년</p>
+				<select name="startResYear">
+					<c:forEach var="year" begin="${curYearSec}" end="${curYearSec+3}">
+					<option value="${year}">${year}</option>
+					</c:forEach>
+				</select>
+				<p class="ymd">월</p>
+				<select name="startResMonth">
+					<c:forEach var="month" begin="${curMonthSec}" end="12">
+					<option value="${month}">${month}</option>
+					</c:forEach>
+					<option></option>
+				</select>
+				<p class="ymd">일</p>
+				<select name="startResDate">
+					<c:forEach var="date" begin="${curDateSec}" end="31">
+					<option value="${date}">${date}</option>
+					</c:forEach>
+			</div>
+		</div>
+		<div style="text-align:center">
+			<p>체크아웃 날짜</p>
+			<div style="display:flex; justify-content:space-around">
+				<p class="ymd">년</p>
+				<select name="endResYear">
+					<c:forEach var="year" begin="${curYearSec}" end="${curYearSec+3}">
+					<option value="${year}">${year}</option>
+					</c:forEach>
+				</select>
+				<p class="ymd">월</p>
+				<select name="endResMonth">
+					<c:forEach var="month" begin="${curMonthSec}" end="12">
+					<option value="${month}">${month}</option>
+					</c:forEach>
+					<option></option>
+				</select>
+				<p class="ymd">일</p>
+				<select name="endResDate">
+					<c:forEach var="date" begin="${curDateSec}" end="31">
+					<option value="${date}">${date}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
+		<input type="submit" value="예약하기" />
+	</form>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
