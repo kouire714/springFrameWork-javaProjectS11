@@ -55,10 +55,6 @@ public class MessageController {
 			model.addAttribute("msg", "공지등록을 실패하였습니다.");
 			model.addAttribute("url", "notice/noticeInput");
 		}
-		else if(msgFlag.equals("reservationOk")) {
-			model.addAttribute("msg", "예약등록하였습니다.");
-			model.addAttribute("url", "");
-		}
 
 		
 		return "include/message";

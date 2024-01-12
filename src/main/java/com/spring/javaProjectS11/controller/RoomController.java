@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.javaProjectS11.service.RoomService;
+import com.spring.javaProjectS11.vo.RoomVO;
 
 @Controller
 @RequestMapping("/room")
@@ -97,20 +99,54 @@ public class RoomController {
 		return "room/roomMain";
 	}
 	
-	@RequestMapping(value="roomMain", method=RequestMethod.POST)
-	public String roomMainPost(HttpServletRequest request) {
+	@ResponseBody
+	@RequestMapping(value="/roomMain", method=RequestMethod.POST)
+	public String roomMainPost(HttpServletRequest request) {		
+		
+		System.out.println("sdaf");
+		
 		int startResYear = Integer.parseInt(request.getParameter("startResYear"));
 		int startResMonth = Integer.parseInt(request.getParameter("startResMonth"));
 		int startResDate = Integer.parseInt(request.getParameter("startResDate"));
 		
-		// int 날짜로묶기
+		String checkInDate = startResYear+"-"+startResMonth+"-"+startResDate;
 		
 		int endResYear = Integer.parseInt(request.getParameter("endResYear"));
 		int endResMonth = Integer.parseInt(request.getParameter("endResMonth"));
 		int endResDate = Integer.parseInt(request.getParameter("endResDate"));
 		
-		int res = roomService.setRoomReservation();
+		String checkOutDate = endResYear+"-"+endResMonth+"-"+endResDate;
 		
-		return "redirect:message/reservationOk";
+		String sMm = "", edDd = "";
+		String[] sCheckInDate = checkInDate.split("-");
+		// 2023-1-5/2023-1-15/2023-10-5  ==> 2023-01-05
+		if(checkInDate.length() != 10) {
+			if(sCheckInDate[1].length() == 1) sMm = "0" + sCheckInDate[1];
+			else sMm = sCheckInDate[1];
+			if(sCheckInDate[2].length() == 1) edDd = "0" + sCheckInDate[2];
+			else edDd = sCheckInDate[2];
+			checkInDate = sCheckInDate[0] + "-" + sMm + "-" + edDd;
+		}
+		System.out.println("checkInDate : " + checkInDate);
+		
+		String eMm = "", eDd = "";
+		String[] sCheckOutDate = checkOutDate.split("-");
+		// 2023-1-5/2023-1-15/2023-10-5  ==> 2023-01-05
+		if(checkOutDate.length() != 10) {
+			if(sCheckOutDate[1].length() == 1) eMm = "0" + sCheckOutDate[1];
+			else eMm = sCheckOutDate[1];
+			if(sCheckOutDate[2].length() == 1) eDd = "0" + sCheckOutDate[2];
+			else eDd = sCheckOutDate[2];
+			checkOutDate = sCheckOutDate[0] + "-" + eMm + "-" + eDd;
+		}
+		System.out.println("checkOutDate : " + checkOutDate);
+		
+		// 예약 중복체크..
+		RoomVO roomVO = roomService.getRoomCheck(checkInDate, checkOutDate);
+		
+		int res = roomService.setRoomRes(checkInDate, checkOutDate);
+		
+		return res + "";
+		
 	}
 }

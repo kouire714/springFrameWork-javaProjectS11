@@ -33,47 +33,41 @@
 	<script>
 		'use strict'
 	
-		let today = new Date();
-		let year = today.getFullYear();
-		let month = today.getMonth();
-		let date = today.getDate();
-		let cnt = 0;
-		
-		let cellText1 = 0;
-		let cellText2 = 0
-		
-		/* 
-		function resSelection() {
-		let dateTag = document.getElementById("td${cell}");
-			console.log(dateTag);
-			dateTag.classList.add("resDate");
-			alert("시작날짜선택완료");
-		};
-		  */
-		
-		/* 
-		date = document.getElementById("td${cell}");
-		console.log("date : ", date);
-		if(date != null) {
-			date.addEventListener('click', function() {
-				this.classList.add("resDate");
-				alert("시작날짜선택완료");
-			})	
+		function resRoom() {
+			
+			let startResYear = resSelect.startResYear.value;
+			let startResMonth = resSelect.startResMonth.value;
+			let startResDate = resSelect.startResDate.value;
+			let endResYear = resSelect.endResYear.value;
+			let endResMonth = resSelect.endResMonth.value;
+			let endResDate = resSelect.endResDate.value;
+			
+			$.ajax({
+				url : "${ctp}/room/roomMain",
+				type : "post",
+				data  : {
+					startResYear : startResYear,
+					startResMonth : startResMonth,
+					startResDate : startResDate,
+					endResYear : endResYear,
+					endResMonth : endResMonth,
+					endResDate : endResDate
+				},
+				success : function(res) {
+					/* 업데이트 처리된 횟수에 따라 수가 달라짐 */
+					if(res != "0") {
+						alert("예약등록 완료하였습니다.");
+						location.reload();
+					}
+					else {
+						alert("이미 예약된 날짜는 등록할 수 없습니다.");
+					}
+				},
+				error : function() {
+					alert("전송오류");
+				}
+			});
 		}
-		 */
-		
-		/* 
-		const resDate = document.querySelectorAll(".dateTag");
-		console.log(resDate);
-		
-		resDate.forEach((resDate)=>{
-			console.log(resDate);
-			resDate.addEventListener('click', ()=>{
-				alert("시작날짜선택완료");
-				resDate.classList.add('active');
-			})
-		})
-		*/
 		
 	</script>
 </head>
@@ -111,7 +105,7 @@
 			</tr>
 		</table>
 	</div>
-	<form style="display:flex; justify-content:space-around" method="post">
+	<form name="resSelect" style="display:flex; justify-content:space-around">
 		<div style="text-align:center">
 			<p>체크인 날짜</p>
 			<div style="display:flex; justify-content:space-around">
@@ -126,13 +120,13 @@
 					<c:forEach var="month" begin="${curMonthSec}" end="12">
 					<option value="${month}">${month}</option>
 					</c:forEach>
-					<option></option>
 				</select>
 				<p class="ymd">일</p>
 				<select name="startResDate">
 					<c:forEach var="date" begin="${curDateSec}" end="31">
 					<option value="${date}">${date}</option>
 					</c:forEach>
+				</select>
 			</div>
 		</div>
 		<div style="text-align:center">
@@ -149,7 +143,6 @@
 					<c:forEach var="month" begin="${curMonthSec}" end="12">
 					<option value="${month}">${month}</option>
 					</c:forEach>
-					<option></option>
 				</select>
 				<p class="ymd">일</p>
 				<select name="endResDate">
@@ -159,7 +152,7 @@
 				</select>
 			</div>
 		</div>
-		<input type="submit" value="예약하기" />
+		<input type="button" value="예약하기" onclick="resRoom()"/>
 	</form>
 </div>
 <p><br/></p>

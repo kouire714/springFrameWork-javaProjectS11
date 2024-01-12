@@ -2,8 +2,12 @@ package com.spring.javaProjectS11.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-public interface RoomDAO {
+import com.spring.javaProjectS11.vo.RoomVO;
 
-	int setRoomReservation();
+public interface RoomDAO {
+	
+	public RoomVO getRoomCheck(@Param("checkInDate") String checkInDate, @Param("checkOutDate") String checkOutDate);
+
+	public int setRoomRes(@Param("checkInDate") String checkInDate, @Param("checkOutDate") String checkOutDate);
 
 }

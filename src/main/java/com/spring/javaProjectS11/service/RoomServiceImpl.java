@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.javaProjectS11.dao.RoomDAO;
+import com.spring.javaProjectS11.vo.RoomVO;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -12,7 +13,13 @@ public class RoomServiceImpl implements RoomService {
 	RoomDAO serviceDAO;
 
 	@Override
-	public int setRoomReservation() {
-		return serviceDAO.setRoomReservation();
+	public int setRoomRes(String checkInDate, String checkOutDate) {
+		return serviceDAO.setRoomRes(checkInDate, checkOutDate);
 	}
+
+	@Override
+	public RoomVO getRoomCheck(String checkInDate, String checkOutDate) {
+		return serviceDAO.getRoomCheck(checkInDate, checkOutDate);
+	}
+	
 }
