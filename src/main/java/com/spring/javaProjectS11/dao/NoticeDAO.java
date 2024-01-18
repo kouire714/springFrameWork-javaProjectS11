@@ -14,4 +14,8 @@ public interface NoticeDAO {
 
 	int setNoticeInput(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content);
 
+	int setNoticeUpdate(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content, @Param("idx")int idx);
+
+	int noticeDelete(@Param("idx") int idx);
+
 }

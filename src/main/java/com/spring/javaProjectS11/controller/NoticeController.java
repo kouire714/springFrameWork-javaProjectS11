@@ -63,4 +63,44 @@ public class NoticeController {
 		
 		return "redirect:/message/noticeInputOk";
 	}
+	
+	@RequestMapping(value = "/noticeUpdate", method = RequestMethod.GET)
+	public String noticeUpDateGet(@RequestParam(name="idx", defaultValue="", required=false) int idx,
+			HttpServletRequest request) {
+		
+		NoticeVO vo = noticeService.getNoticeContent(idx);
+		request.setAttribute("idx", idx);
+		request.setAttribute("vo", vo);
+		
+		return "notice/noticeUpdate";
+	}
+	
+	@RequestMapping(value = "/noticeUpdate", method = RequestMethod.POST)
+	public String noticeUpDateGet(
+			@RequestParam(name="nickName", defaultValue="", required=false) String nickName,
+			@RequestParam(name="email", defaultValue="", required=false) String email,
+			@RequestParam(name="title", defaultValue="", required=false) String title,
+			@RequestParam(name="content", defaultValue="", required=false) String content,
+			@RequestParam(name="idx", defaultValue="", required=false) int idx) {
+		
+		int res = noticeService.setNoticeUpdate(nickName, email, title, content, idx);
+		
+		if(res != 1) {
+			return "redirect:/message/noticeUpdateNo";
+		}		
+		return "redirect:/message/noticeUpdateOk";
+	}
+	
+	@RequestMapping(value = "/noticeDelete", method = RequestMethod.GET)
+	public String noticeDelete(@RequestParam(name="idx",  defaultValue="", required=false) int idx) {
+		
+		int res = noticeService.noticeDelete(idx);
+		
+		if(res != 1) {
+			return "redirect:/message/noticeDeleteNo";
+		}
+		
+		return "redirect:/message/noticeDeleteOk";
+		
+	}
 }

@@ -14,4 +14,12 @@
 	insert into notice value (default, #{nickName}, #{email}, #{title}, #{content});
 </insert>
 
+<update id="setNoticeUpdate">
+	update notice set nickName=#{nickName}, email=#{email}, title=#{title}, content=#{content} where idx=#{idx};
+</update>
+
+<delete id="noticeDelete">
+	delete from notice where idx = #{idx};
+</delete>
+
 </mapper>

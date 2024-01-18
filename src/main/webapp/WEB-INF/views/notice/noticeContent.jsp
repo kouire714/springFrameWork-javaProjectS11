@@ -14,6 +14,8 @@
 <p><br/></p>
 <div class="container">
 <h2>공지 게시판</h2>
+<button onclick="location.href='${ctp}/notice/noticeUpdate?idx=${vo.idx}'">글수정</button>
+<button onclick="location.href='${ctp}/notice/noticeDelete?idx=${vo.idx}'">글삭제</button>
 <p>작성자 : ${vo.nickName}</p>
 <p>이메일 : ${vo.email}</p>
 <p>제목 : ${vo.title}</p>

@@ -55,8 +55,24 @@ public class MessageController {
 			model.addAttribute("msg", "공지등록을 실패하였습니다.");
 			model.addAttribute("url", "notice/noticeInput");
 		}
-
+		else if(msgFlag.equals("noticeUpdateOk")) {
+			model.addAttribute("msg", "공지 수정을 완료하였습니다.");
+			model.addAttribute("url", "notice/noticeList");
+		}
+		else if(msgFlag.equals("noticeUpdateNo")) {
+			model.addAttribute("msg", "공지 수정을 실패하였습니다.");
+			model.addAttribute("url", "notice/noticeList");
+		}
+		else if(msgFlag.equals("noticeDeleteOk")) {
+			model.addAttribute("msg", "공지 삭제를 완료하였습니다.");
+			model.addAttribute("url", "notice/noticeList");
+		}
+		else if(msgFlag.equals("noticeDeleteNo")) {
+			model.addAttribute("msg", "공지 삭제를 실패하였습니다.");
+			model.addAttribute("url", "notice/noticeList");
+		}
 		
+
 		return "include/message";
 	}
 }

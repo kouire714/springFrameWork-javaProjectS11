@@ -12,4 +12,8 @@ public interface NoticeService {
 
 	public int setNoticeInput(String nickName, String email, String title, String content);
 
+	public int setNoticeUpdate(String nickName, String email, String title, String content, int idx);
+
+	public int noticeDelete(int idx);
+
 }

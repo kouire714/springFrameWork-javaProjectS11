@@ -1,5 +1,7 @@
 package com.spring.javaProjectS11.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,20 @@ public class RoomServiceImpl implements RoomService {
 	RoomDAO serviceDAO;
 
 	@Override
+	public RoomVO getRoomCheck(String checkInDate, String checkOutDate) {
+		return serviceDAO.getRoomCheck(checkInDate, checkOutDate);
+	}
+	
+	@Override
 	public int setRoomRes(String checkInDate, String checkOutDate) {
 		return serviceDAO.setRoomRes(checkInDate, checkOutDate);
 	}
 
 	@Override
-	public RoomVO getRoomCheck(String checkInDate, String checkOutDate) {
-		return serviceDAO.getRoomCheck(checkInDate, checkOutDate);
+	public List<RoomVO> getRoomRes(String ym) {
+		return serviceDAO.getRoomRes(ym);
+		
 	}
+
 	
 }

@@ -28,5 +28,15 @@ public class NoticeServiceImpl implements NoticeService {
 	public int setNoticeInput(String nickName, String email, String title, String content) {
 		return noticeDAO.setNoticeInput(nickName, email, title, content);
 	}
+
+	@Override
+	public int setNoticeUpdate(String nickName, String email, String title, String content, int idx) {
+		return noticeDAO.setNoticeUpdate(nickName, email, title, content, idx);
+	}
+
+	@Override
+	public int noticeDelete(int idx) {
+		return noticeDAO.noticeDelete(idx);
+	}
 	
 }

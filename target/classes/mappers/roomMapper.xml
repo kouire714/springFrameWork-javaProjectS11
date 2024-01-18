@@ -2,11 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.javaProjectS11.dao.RoomDAO">
 
-    <select id="getRoomCheck" resultType="com.spring.javaProjectS11.vo.RoomVO">
-      select * room where 
+	<select id="getRoomCheck" resultType="com.spring.javaProjectS11.vo.RoomVO">
+		select * from room where (checkInDate > #{checkInDate} and #{checkOutDate} > checkInDate) or
+			(#{checkInDate} > checkInDate and checkOutDate > #{checkInDate}) or (checkInDate = #{checkInDate})
     </select>
 
 	<insert id="setRoomRes">
 		insert into room values (#{checkInDate}, #{checkOutDate});
 	</insert>
+	
+	<select id="getRoomRes" resultType="com.spring.javaProjectS11.vo.RoomVO">
+		select * from room where date_format(checkOutDate, '%Y-%m') = #{ym};
+	</select>
+	
+	
 </mapper>

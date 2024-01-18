@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,15 @@
 		margin : 15px;
 	}
 	
+	.resIn	{
+		background-color : skyblue;
+	}
+
+	.resOut	{
+		background-color : skyblue;
+	}
+	
+	
 	</style>
 	<script>
 		'use strict'
@@ -55,12 +65,15 @@
 				},
 				success : function(res) {
 					/* 업데이트 처리된 횟수에 따라 수가 달라짐 */
-					if(res != "0") {
+					if(res > "0") {
 						alert("예약등록 완료하였습니다.");
 						location.reload();
 					}
-					else {
+					else if(res == "0") {
 						alert("이미 예약된 날짜는 등록할 수 없습니다.");
+					}
+					else if(res == "-1") {
+						alert("체크아웃 날짜가 체크인 날짜보다 커야합니다.");
 					}
 				},
 				error : function() {
@@ -78,6 +91,14 @@
 <div class="container">
 <h2>예약 페이지</h2>
 	<div class="text-center">
+		<button onclick="location.href='${ctp}/room/roomMain?yy=${yy-1}'">이전년도</button>
+		<button onclick="location.href='${ctp}/room/roomMain?mm=${mm-1}'">이전달</button>
+		<font>${yy} 년 - ${mm + 1} 월</font>
+		<button onclick="location.href='${ctp}/room/roomMain?mm=${mm+1}'">다음달</button>
+		<button onclick="location.href='${ctp}/room/roomMain?yy=${yy+1}'">다음년도</button>
+	</div>
+	<p></p>
+	<div class="text-center">
 		<table class="table table-bordered">
 			<tr class="table-dark text-dark">
 				<th style="color : red">일</th>
@@ -92,13 +113,27 @@
 				<c:forEach var="prevDay" begin="${prevLastDay-(startWeek-2)}" end="${prevLastDay}" varStatus="status">
 				<td style="font-size:0.6em; color:gray; text-align:left">${prevYear}-${prevMonth+1}-${prevDay}</td>
 				</c:forEach>
+				
 				<c:set var="cell" value="${startWeek}" />
 				<c:forEach begin="1" end="${lastDay}" varStatus="status">
+			    	<c:set var="resInSw" value="0" />
+			    	<c:set var="resOutSw" value="0" />
 					<c:set var="todaySw" value="${curYear==yy && curMonth==mm && curDate==status.count? 1 : 0}" />
-					<td id="td${cell}" ${todaySw==1 ? 'class=today' : ''} class="text-left"><p>${status.count}</p></td>
+				    <c:forEach var="vo" items="${vos}">
+				    	<c:if test="${resInSw==0}">
+					    	<c:set var="resInSw" value="${fn:substring(vo.checkInDate, 8, 10)==status.count? 1 : 0}" />
+				    	</c:if>
+				    	<c:if test="${resOutSw==0}">
+					    	<c:set var="resOutSw" value="${fn:substring(vo.checkOutDate, 8, 10)==status.count? 1 : 0}" />
+					    </c:if>
+				    </c:forEach>				
+					<td id="td${cell}" class="${todaySw==1 ? 'today' : ''} ${resInSw==1 ? 'resIn' : ''} ${resOutSw==1 ? 'resOut' : ''} text-left">
+						<p>${status.count}</p>
+					</td>
 					<c:if test="${cell % 7 == 0}"><tr></tr></c:if>
 					<c:set var="cell" value="${cell + 1}" />
 				</c:forEach>
+				
 				<c:forEach var="nextDay" begin="${nextStartWeek}" end="7" varStatus="status">
 				<td style="font-size:0.6em; color:gray; text-align:left">${nextYear}-${nextMonth+1}-${status.count}</td>
 				</c:forEach>
@@ -117,13 +152,13 @@
 				</select>
 				<p class="ymd">월</p>
 				<select name="startResMonth">
-					<c:forEach var="month" begin="${curMonthSec}" end="12">
+					<c:forEach var="month" begin="1" end="12">
 					<option value="${month}">${month}</option>
 					</c:forEach>
 				</select>
 				<p class="ymd">일</p>
 				<select name="startResDate">
-					<c:forEach var="date" begin="${curDateSec}" end="31">
+					<c:forEach var="date" begin="1" end="${lastDay}">
 					<option value="${date}">${date}</option>
 					</c:forEach>
 				</select>
@@ -140,13 +175,13 @@
 				</select>
 				<p class="ymd">월</p>
 				<select name="endResMonth">
-					<c:forEach var="month" begin="${curMonthSec}" end="12">
+					<c:forEach var="month" begin="1" end="12">
 					<option value="${month}">${month}</option>
 					</c:forEach>
 				</select>
 				<p class="ymd">일</p>
 				<select name="endResDate">
-					<c:forEach var="date" begin="${curDateSec}" end="31">
+					<c:forEach var="date" begin="1" end="${lastDay}">
 					<option value="${date}">${date}</option>
 					</c:forEach>
 				</select>
