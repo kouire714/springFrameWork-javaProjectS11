@@ -7,6 +7,8 @@
 	<meta charset="UTF-8">
 	<title>memberJoin.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<link rel="stylesheet" type="text/css" href="${ctp}/resources/css/include.css?after"/>
+	<link rel="stylesheet" type="text/css" href="${ctp}/resources/css/member.css?after"/>
 	<script>
 		'use strict'
 		
@@ -16,47 +18,49 @@
 	</script>
 </head>
 <body>
+<div class="include">
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
+</div>
 <p><br/></p>
-<div class="container">
-<h2>회원가입</h2>
-	<form method="post">
+<div class="memberJoin">
+<h3>회원가입</h3>
+	<form method="post" name="joinForm">
 		<div>
-			<label for="mid">아이디</label>
+			<p><label for="mid">아이디</label></p>
 			<input type="text" id="mid" name="mid" placeholder="아이디를 입력하세요" required/>
 		</div>
 		<div>
-			<label for="pwd">비밀번호</label>
+			<p><label for="pwd">비밀번호</label></p>
 			<input type="password" id="pwd" name="pwd" required/>
 		</div>
 		<div>
-			<label for="nickName">닉네임</label>
+			<p><label for="nickName">닉네임</label></p>
 			<input type="text" id="nickName" name="nickName" placeholder="닉네임을 입력하세요" required/>
 		</div>
 		<div>
-			<label for="name">이름</label>
+			<p><label for="name">이름</label></p>
 			<input type="text" id="name" name="name" placeholder="이름을 입력하세요" required/>
 		</div>
-		<div>
-			<label>성별</label>
+		<div class="joinForm__gender">
+			<p><label>성별</label></p>
 			<input type="radio" name="gender" id="male" value="남자"/><label for="male">남자</label>
 			<input type="radio" name="gender" id="feMale" value="여자"/><label for="feMale">여자</label>
 		</div>
 		<div>
-			<label for="birthYear">생년월일</label>
+			<p><label for="birthYear">생년월일</label></p>
 			<input type="number" id="birthYear"/>/<input type="number" id="birthMonth"/>/<input type="number" id="birthDate"/>
 		</div>
 		<div>
-			<label for="address">주소</label>
+			<p><label for="address">주소</label></p>
 			<input type="text" name="address" placeholder="주소를 입력하세요"/>
 		</div>
 		<div>
-			<label for="phoneOne">전화번호</label>
+			<p><label for="phoneOne">전화번호</label></p>
 			<input type="number" id="phoneOne" required/>-<input type="number" id="phoneTwo" required/>-<input type="number" id="phoneThree" required/>
 		</div>
 		<div>
-			<label for="email">이메일</label>
+			<p><label for="email">이메일</label><p>
 			<input type="text" id="email" name="email" placeholder="이메일을 입력하세요" required/>
 		</div>
 		<div>

@@ -32,6 +32,7 @@ public class RoomController {
 		int curYear = cal.get(Calendar.YEAR);
 		int curMonth = cal.get(Calendar.MONTH);
 		int curDate = cal.get(Calendar.DATE);
+		System.out.println("curYear : " + curYear);
 		
 		int yy = request.getParameter("yy")==null ? curYear : Integer.parseInt(request.getParameter("yy"));
 		int mm = request.getParameter("mm")==null ? curMonth : Integer.parseInt(request.getParameter("mm"));
@@ -114,21 +115,20 @@ public class RoomController {
 	@RequestMapping(value="/roomMain", method=RequestMethod.POST)
 	public String roomMainPost(HttpServletRequest request) {		
 		
-		int startResYear = Integer.parseInt(request.getParameter("startResYear"));
-		int startResMonth = Integer.parseInt(request.getParameter("startResMonth"));
-		int startResDate = Integer.parseInt(request.getParameter("startResDate"));
+		String startResYear = request.getParameter("startResYear");
+		String startResMonth = request.getParameter("startResMonth");
+		String startResDate = request.getParameter("startResDate");
 		
 		String checkInDate = startResYear+"-"+startResMonth+"-"+startResDate;
 		
-		int endResYear = Integer.parseInt(request.getParameter("endResYear"));
-		int endResMonth = Integer.parseInt(request.getParameter("endResMonth"));
-		int endResDate = Integer.parseInt(request.getParameter("endResDate"));
+		String endResYear = request.getParameter("endResYear");
+		String endResMonth = request.getParameter("endResMonth");
+		String endResDate = request.getParameter("endResDate");
 		
 		String checkOutDate = endResYear+"-"+endResMonth+"-"+endResDate;
 		
 		String sMm = "", eDd = "";
 		String[] sCheckInDate = checkInDate.split("-");
-		// 2023-1-5/2023-1-15/2023-10-5  ==> 2023-01-05
 		if(checkInDate.length() != 10) {
 			if(sCheckInDate[1].length() == 1) sMm = "0" + sCheckInDate[1];
 			else sMm = sCheckInDate[1];
@@ -140,7 +140,6 @@ public class RoomController {
 		
 		String eMmSec = "", eDdSec = "";
 		String[] sCheckOutDate = checkOutDate.split("-");
-		// 2023-1-5/2023-1-15/2023-10-5  ==> 2023-01-05
 		if(checkOutDate.length() != 10) {
 			if(sCheckOutDate[1].length() == 1) eMmSec = "0" + sCheckOutDate[1];
 			else eMmSec = sCheckOutDate[1];
@@ -150,13 +149,13 @@ public class RoomController {
 		}
 		System.out.println("checkOutDate : " + checkOutDate);
 		
-		// 예약 중복체크..
-		RoomVO roomVO = roomService.getRoomCheck(checkInDate, checkOutDate);
+		List<RoomVO> vos = roomService.getRoomCheck(checkInDate, checkOutDate);
+		System.out.println("vos : " + vos);
 		
 		int resDate = checkInDate.compareTo(checkOutDate);
 		
 		if(resDate < 0) {
-			if(roomVO == null) {
+			if(vos.size() == 0){
 				int res = roomService.setRoomRes(checkInDate, checkOutDate);
 				return res + "";		
 			}

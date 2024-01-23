@@ -7,10 +7,13 @@
 	<meta charset="UTF-8">
 	<title>noticeInput.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<link rel="stylesheet" type="text/css" href="${ctp}/resources/css/include.css?after"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/include/nav.jsp"/>
+<div class="include">
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+</div>
 <p><br/></p>
 <div class="container">
 <h2>공지 작성 페이지</h2>

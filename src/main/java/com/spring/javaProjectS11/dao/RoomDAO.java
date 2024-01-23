@@ -8,10 +8,11 @@ import com.spring.javaProjectS11.vo.RoomVO;
 
 public interface RoomDAO {
 	
-	public RoomVO getRoomCheck(@Param("checkInDate") String checkInDate, @Param("checkOutDate") String checkOutDate);
+	public List<RoomVO> getRoomRes(@Param("ym") String ym);
+
+	public List<RoomVO> getRoomCheck(@Param("checkInDate") String checkInDate, @Param("checkOutDate") String checkOutDate);
 
 	public int setRoomRes(@Param("checkInDate") String checkInDate, @Param("checkOutDate") String checkOutDate);
 
-	public List<RoomVO> getRoomRes(@Param("ym") String ym);
 
 }

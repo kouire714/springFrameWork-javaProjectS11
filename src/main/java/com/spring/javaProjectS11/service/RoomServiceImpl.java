@@ -15,7 +15,12 @@ public class RoomServiceImpl implements RoomService {
 	RoomDAO serviceDAO;
 
 	@Override
-	public RoomVO getRoomCheck(String checkInDate, String checkOutDate) {
+	public List<RoomVO> getRoomRes(String ym) {
+		return serviceDAO.getRoomRes(ym);
+	}
+	
+	@Override
+	public List<RoomVO> getRoomCheck(String checkInDate, String checkOutDate) {
 		return serviceDAO.getRoomCheck(checkInDate, checkOutDate);
 	}
 	
@@ -24,11 +29,6 @@ public class RoomServiceImpl implements RoomService {
 		return serviceDAO.setRoomRes(checkInDate, checkOutDate);
 	}
 
-	@Override
-	public List<RoomVO> getRoomRes(String ym) {
-		return serviceDAO.getRoomRes(ym);
-		
-	}
 
 	
 }

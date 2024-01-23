@@ -26,7 +26,7 @@ public class HomeController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String realPath = request.getSession().getServletContext().getContextPath();
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/ckeditor/");
 		String oFileName = upload.getOriginalFilename();
 		
 		Date date = new Date();

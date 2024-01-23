@@ -7,32 +7,25 @@
 	<meta charset="UTF-8">
 	<title>memberLogin.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
-	<style>
-	</style>
-	<script>
-	</script>
+	<link rel="stylesheet" type="text/css" href="${ctp}/resources/css/include.css?after"/>
+	<link rel="stylesheet" type="text/css" href="${ctp}/resources/css/member.css?after"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/include/nav.jsp"/>
+<div class="include">
+	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+</div>
 <p><br/></p>
-<div class="container">
-<h2>회원 로그인</h2>
+<div class="memberLogin">
+	<h3>로그인</h3>
 	<form method="post">
-		<table>
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" id="mid" name="mid" placeholder="아이디를 입력하세요" autofocus required /></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" id="pwd" name="pwd" required /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="로그인" /></td>
-				<td><input type="button" value="회원가입" onclick="location.href='memberJoin';" /></td>
-			</tr>
-		</table>
+		<p>아이디</p>
+		<input type="text" id="mid" name="mid" placeholder="아이디를 입력하세요" autofocus required />
+		<p>비밀번호</p>
+		<input type="password" id="pwd" name="pwd" required />
+		<br/>
+		<input type="submit" value="로그인" />
+		<input type="button" value="회원가입" onclick="location.href='memberJoin';" />
 	</form>
 </div>
 <p><br/></p>

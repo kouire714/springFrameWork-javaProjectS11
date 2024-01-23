@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+p {
+	margin : 0px;
+}
+
+.memberLogin {
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	background-color : lightgray;
+	margin : 30px 200px 30px 200px;
+	padding : 30px 50px 50px 50px;
+}
+
+.memberLogin h3 {
+	margin-bottom : 30px;
+}
+
+.memberLogin input {
+	margin-bottom : 15px;
+}
+
+.memberJoin {
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	background-color : lightgray;
+	margin : 30px 200px 30px 200px;
+	padding : 30px 50px 50px 50px;
+}
+
+.memberJoin h3 {
+	margin-bottom : 30px;
+}
+
+.memberJoin input {
+	margin-bottom : 15px;
+}
+
+.joinForm__gender input {
+	margin-right : 15px;
+}
+
+.joinForm__gender label {
+	margin-right : 15px;
+}
