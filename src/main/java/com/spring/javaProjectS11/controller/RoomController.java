@@ -25,7 +25,7 @@ public class RoomController {
 	@Autowired
 	RoomService roomService;
 	
-	@RequestMapping(value = "/roomMain", method = RequestMethod.GET)
+	@RequestMapping(value = "/roomRes", method = RequestMethod.GET)
 	public String roomMainGet(HttpServletRequest request, Model model) {
 
 		Calendar cal = Calendar.getInstance();
@@ -108,11 +108,11 @@ public class RoomController {
 		model.addAttribute("vos", vos);
 		System.out.println("vos : " + vos);
 		
-		return "room/roomMain";
+		return "room/roomRes";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/roomMain", method=RequestMethod.POST)
+	@RequestMapping(value="/roomRes", method=RequestMethod.POST)
 	public String roomMainPost(HttpServletRequest request) {		
 		
 		String startResYear = request.getParameter("startResYear");

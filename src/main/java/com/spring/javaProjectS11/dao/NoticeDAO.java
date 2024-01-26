@@ -8,14 +8,18 @@ import com.spring.javaProjectS11.vo.NoticeVO;
 
 public interface NoticeDAO {
 
-	List<NoticeVO> getNoticeList();
+	public List<NoticeVO> getNoticeList();
 
-	NoticeVO getNoticeContent(@Param("idx")int idx);
+	public NoticeVO getNoticeContent(@Param("idx")int idx);
 
-	int setNoticeInput(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content);
+	public int setNoticeInput(@Param("vo")NoticeVO vo);
 
-	int setNoticeUpdate(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content, @Param("idx")int idx);
+	public int setNoticeUpdate(@Param("nickName")String nickName, @Param("email")String email, @Param("title")String title, @Param("content")String content, @Param("idx")int idx);
 
-	int noticeDelete(@Param("idx") int idx);
+	public int noticeDelete(@Param("idx") int idx);
+	
+	public int totRecCnt();
+	
+	public int totRecCntSearch(@Param("search") String search, @Param("searchString") String searchString);
 
 }

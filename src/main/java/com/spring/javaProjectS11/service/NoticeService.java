@@ -10,7 +10,7 @@ public interface NoticeService {
 
 	public NoticeVO getNoticeContent(int idx);
 
-	public int setNoticeInput(String nickName, String email, String title, String content);
+	public int setNoticeInput(NoticeVO vo);
 
 	public int setNoticeUpdate(String nickName, String email, String title, String content, int idx);
 

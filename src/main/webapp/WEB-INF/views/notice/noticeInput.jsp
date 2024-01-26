@@ -18,10 +18,12 @@
 <div class="container">
 <h2>공지 작성 페이지</h2>
 <form method="post">
-	<p>작성자 : <input type="text" id="nickName" name="nickName" value="${vo.nickName}"  required/></p>
-	<p>이메일 : <input type="text" id="email" name="email" value="${vo.email}"/></p>
-	<p>제목 : <input type="text" id="title" name="title" value="${vo.title}" required/></p>
-	<p>글내용 : <input type="text" id="content" name="content" value="${vo.content}" required/></p>
+	<p>작성자 : ${sNickName}</p>
+	<p>이메일 : <input type="text" name="email" /></p>
+	<p>제목 : <input type="text" name="title" required/></p>
+	<p>글내용 : <input type="text" name="content" required/></p>
+	<input type="hidden" name="mid" value="${sMid}" />
+	<input type="hidden" name="nickName" value="${sNickName}" />
 	<input type="submit" value="글올리기"/>
 </form>
 </div>

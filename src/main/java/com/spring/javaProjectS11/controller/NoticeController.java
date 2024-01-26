@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.javaProjectS11.pagination.PageProcess;
+import com.spring.javaProjectS11.pagination.PageVO;
 import com.spring.javaProjectS11.service.NoticeService;
 import com.spring.javaProjectS11.vo.NoticeVO;
 
@@ -20,8 +22,15 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 	
+	@Autowired
+	PageProcess pageProcess;
+	
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
-	public String noticeListGet(HttpServletRequest request) {
+	public String noticeListGet(HttpServletRequest request,
+			@RequestParam(name="pag", defaultValue="1", required=false) int pag,
+			@RequestParam(name="pageSize", defaultValue="5", required=false) int pageSize
+			){
+		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "notice", "", "");
 		
 		List<NoticeVO> vos = noticeService.getNoticeList();
 		
@@ -49,14 +58,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/noticeInput", method = RequestMethod.POST)
-	public String noticeInputPost(
-			@RequestParam(name="nickName", defaultValue="", required=false) String nickName,
-			@RequestParam(name="email", defaultValue="", required=false) String email,
-			@RequestParam(name="title", defaultValue="", required=false) String title,
-			@RequestParam(name="content", defaultValue="", required=false) String content
-			) {
+	public String noticeInputPost(NoticeVO vo) {
 		
-		int res = noticeService.setNoticeInput(nickName, email, title, content);
+		int res = noticeService.setNoticeInput(vo);
 		
 		if(res != 1)
 			return "redirect:/message/noticeInputNo";

@@ -48,6 +48,7 @@ public class MemberController {
 					strLevel = "관리자";
 				}
 //				HttpSession session = request.getSession();
+				session.setAttribute("sMid", vo.getMid());
 				session.setAttribute("sNickName", vo.getNickName());
 				session.setAttribute("sLevel", strLevel);
 				

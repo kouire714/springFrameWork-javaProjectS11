@@ -21,13 +21,13 @@
 	<p>이메일 : <input type="text" id="email" name="email" value="${email}" /></p>
 	<p>제목 : <input type="text" id="title" name="title" /></p>
 	<p>작성내용 :  <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea></p>
-            <script>
-                CKEDITOR.replace("editor1", {
-    	        	height: 380,
-    	        	filebrowserUploadUrl:"${ctp}/imageUpload",		/* 파일(이미지) 업로드시에 매핑경로 */
-    	        	uploadUrl : "${ctp}/imageUpload"				/* 여러개의 그림파일을 드래그&드롭해서 올릴 수 있다. */
-                });
-            </script>
+    <script>
+        CKEDITOR.replace("editor1", {
+     	height: 380,
+     	filebrowserUploadUrl:"${ctp}/imageUpload",		/* 파일(이미지) 업로드시에 매핑경로 */
+     	uploadUrl : "${ctp}/imageUpload"				/* 여러개의 그림파일을 드래그&드롭해서 올릴 수 있다. */
+        });
+    </script>
 	<input type="submit" value="글올리기" />
 </form>
 </div>

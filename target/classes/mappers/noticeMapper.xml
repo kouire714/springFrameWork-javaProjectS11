@@ -11,7 +11,7 @@
 </select>
 
 <insert id="setNoticeInput">
-	insert into notice value (default, #{nickName}, #{email}, #{title}, #{content});
+	insert into notice value (default, #{vo.mid}, #{vo.nickName}, #{vo.email}, #{vo.title}, #{vo.content}, default);
 </insert>
 
 <update id="setNoticeUpdate">
@@ -21,5 +21,13 @@
 <delete id="noticeDelete">
 	delete from notice where idx = #{idx};
 </delete>
+
+<select id="totRecCnt" resultType="int">
+	select count(*) from notice;
+</select>
+
+<select id="totRecCntSearch" resultType="int">
+	select count(*) from board2 where ${search} like concat('%',#{searchString},'%');
+</select>
 
 </mapper>
