@@ -1,7 +1,36 @@
 @charset "UTF-8";
 
-/* 
-button, a {
-	display : block;
+.notice {
+	display : flex;
+	flex-direction : column;
+	align-items : center;
 }
- */
+
+h3 {
+	margin-bottom : 15px;
+}
+
+.notice__btn {
+	width : 70%;
+	display : flex;
+	justify-content : space-between;
+	margin-bottom : 15px;
+}
+
+.notice__table {
+	margin-bottom : 15px;
+}
+
+.notice__blockPage {
+	width : 100%;
+	display : flex;
+	justify-content : center;
+}
+
+.notice__blockPage__ul {
+	display : flex;
+} 
+
+.notice__blockPage__ul__li {
+	list-style : none;
+}

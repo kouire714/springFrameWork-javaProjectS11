@@ -8,7 +8,7 @@ import com.spring.javaProjectS11.vo.NoticeVO;
 
 public interface NoticeDAO {
 
-	public List<NoticeVO> getNoticeList();
+	public List<NoticeVO> getNoticeList(@Param("startIndexNo")int startIndexNo, @Param("pageSize")int pageSize);
 
 	public NoticeVO getNoticeContent(@Param("idx")int idx);
 

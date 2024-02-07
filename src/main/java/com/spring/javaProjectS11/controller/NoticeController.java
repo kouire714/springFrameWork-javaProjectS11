@@ -32,11 +32,12 @@ public class NoticeController {
 			){
 		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "notice", "", "");
 		
-		List<NoticeVO> vos = noticeService.getNoticeList();
+		List<NoticeVO> vos = noticeService.getNoticeList(pageVO.getStartIndexNo(),pageSize);
 		
 //		System.out.println("vos : " + vos);
 		
 		request.setAttribute("vos", vos);
+		request.setAttribute("pageVO", pageVO);
 		
 		return "notice/noticeList";
 	}

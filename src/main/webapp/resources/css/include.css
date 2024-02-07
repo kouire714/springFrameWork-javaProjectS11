@@ -34,10 +34,10 @@ body {
 .nav__li {
 	padding : 15px;
 	cursor : pointer;
+	list-style : none;
 }
 
 .nav__li a {
-	text-decoration : none;
 	color : white;
 }
 

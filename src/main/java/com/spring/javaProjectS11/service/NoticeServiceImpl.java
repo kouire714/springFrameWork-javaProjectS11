@@ -15,8 +15,8 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeDAO noticeDAO;
 
 	@Override
-	public List<NoticeVO> getNoticeList() {
-		return noticeDAO.getNoticeList();
+	public List<NoticeVO> getNoticeList(int startIndexNo, int pageSize) {
+		return noticeDAO.getNoticeList(startIndexNo, pageSize);
 	}
 
 	@Override

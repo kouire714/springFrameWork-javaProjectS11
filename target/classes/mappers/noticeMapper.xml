@@ -3,7 +3,7 @@
 <mapper namespace="com.spring.javaProjectS11.dao.NoticeDAO">
 
 <select id="getNoticeList" resultType="com.spring.javaProjectS11.vo.NoticeVO">
-	select * from notice;
+	select * from notice order by idx desc limit #{startIndexNo}, #{pageSize};
 </select>
 
 <select id="getNoticeContent" resultType="com.spring.javaProjectS11.vo.NoticeVO">
@@ -27,7 +27,7 @@
 </select>
 
 <select id="totRecCntSearch" resultType="int">
-	select count(*) from board2 where ${search} like concat('%',#{searchString},'%');
+	select count(*) from notice where ${search} like concat('%',#{searchString},'%');
 </select>
 
 </mapper>

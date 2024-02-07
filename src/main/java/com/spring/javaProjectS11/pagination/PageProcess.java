@@ -26,6 +26,25 @@ public class PageProcess {
 		}
 		
 		int totPage = (totRecCnt % pageSize)==0 ? (totRecCnt / pageSize) : (totRecCnt / pageSize) + 1;
+		int startIndexNo = (pag - 1) * pageSize;
+		int curScrStartNo = totRecCnt - startIndexNo;
+		
+		int blockSize = 3;
+		int curBlock = (pag - 1) / blockSize;
+		int lastBlock = (totPage - 1) / blockSize;
+		
+		pageVO.setPag(pag);
+		pageVO.setPageSize(pageSize);
+		pageVO.setTotRecCnt(totRecCnt);
+		pageVO.setTotPage(totPage);
+		pageVO.setStartIndexNo(startIndexNo);
+		pageVO.setCurScrStartNo(curScrStartNo);
+		pageVO.setBlockSize(blockSize);
+		pageVO.setCurBlock(curBlock);
+		pageVO.setLastBlock(lastBlock);
+		pageVO.setPart(part);
+		pageVO.setSearch(search);
+		pageVO.setSearchString(searchString);
 		
 		return pageVO;
 	}

@@ -6,7 +6,7 @@ import com.spring.javaProjectS11.vo.NoticeVO;
 
 public interface NoticeService {
 
-	public List<NoticeVO> getNoticeList();
+	public List<NoticeVO> getNoticeList(int startIndexNo, int pageSize);
 
 	public NoticeVO getNoticeContent(int idx);
 
